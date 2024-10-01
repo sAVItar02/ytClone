@@ -7,6 +7,7 @@ import useChannelInfo from '../utils/useChannelInfo';
 import { convertNumbers } from '../utils/convertNumbers';
 import { calculateTime } from '../utils/convertTime';
 import CommentsContainer from './CommentsContainer';
+import LiveChat from './LiveChat';
 
 const WatchPage = () => {
   const [videoDetails, setVideoDetails] = useState([]);
@@ -52,13 +53,17 @@ const WatchPage = () => {
             </>
           }
         </div>
-        <div className='mt-2 flex flex-col items-start justify-start gap-2 p-4 rounded-lg bg-[#f2f2f2] cursor-pointer'>
+        <div className='mt-2 flex flex-col items-start justify-start gap-2 p-4 rounded-lg bg-[#f2f2f2] cursor-pointer w-full'>
             <p className='text-sm font-semibold'>{videoDetails[0]?.statistics?.viewCount} views {calculateTime(videoDetails[0]?.snippet?.publishedAt || 0)}</p>
           <p  className='text-ellipsis line-clamp-2 w-full text-sm text-gray-500 font-medium'>{videoDetails[0]?.snippet?.description}</p>
         </div>
       </div>
 
-      <div className='row-start-2 col-span-2'>
+      <div className='col-span-1 h-[500px] w-full rounded-lg border border-[#e5e5e5] mx-2'>
+          <LiveChat />
+      </div>
+
+      <div className='row-start-2 col-span-2 w-full'>
           <CommentsContainer />
       </div>
     </div>

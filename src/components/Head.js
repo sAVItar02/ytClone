@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice';
 import { YOUTUBE_SEARCH_API } from '../utils/constants';
 import { cacheSuggestions } from '../utils/cacheSlice';
+import { Link } from 'react-router-dom';
 
 const Head = () => {
     const [searchQuery, setSearchQurey] = useState("");
@@ -46,7 +47,7 @@ const Head = () => {
             <button className='rounded-full hover:bg-[#e5e5e5] duration-150 ease-linear p-2' onClick={() => toggleMenuHandler()}>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style={{pointerEvents: "none", display: "inherit", width: 24 + "px", height: 24 + "px"}}><path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"></path></svg>
             </button>
-            <button className='h-5 w-auto'>
+            <Link to="/" className='h-5 w-auto'>
                 <svg xmlns="http://www.w3.org/2000/svg" id="yt-logo-red-updated-svg_yt16" className="external-icon" viewBox="0 0 97 20" style={{width: 100 + "%", pointerEvents: "none", display: "inherit", height: 100 + "%"}} focusable="false" aria-hidden="true">
                 <svg id="yt-logo-red-updated_yt16" viewBox="0 0 97 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                     <g>
@@ -65,7 +66,7 @@ const Head = () => {
                     </g>
                 </svg>
                 </svg>
-            </button>
+            </Link>
         </div>
 
         <div className='relative flex items-center justify-center gap-0'>
@@ -77,7 +78,7 @@ const Head = () => {
             <div className='absolute top-10 left-0 bg-white rounded-lg border border-gray-200 shadow-md w-full hidden peer-focus-within:block'>
                 <ul className='flex flex-col items-start justify-center py-2'>
                     {
-                        searchSuggestions && searchSuggestions.map(s => <li key={s} className='flex items-center justify-start gap-2 px-5 py-2 hover:bg-gray-100 w-full cursor-default'><svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> {s}</li>)
+                        searchSuggestions && searchSuggestions.map(s => <li key={s} className='w-full'> <Link className='flex items-center justify-start gap-2 px-5 py-2 hover:bg-gray-100 w-full cursor-default' to={"/watch?search-query=" + s}><svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> {s} </Link></li>)
                     }
                     
                 </ul>
